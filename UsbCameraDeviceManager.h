@@ -164,7 +164,7 @@ namespace UsbCameraDeviceManager
 // *********************************************************************************************************
 // DEFINITIONS
 
-UsbCameraDeviceManager::CUsbCameraDeviceManager::CUsbCameraDeviceManager()
+inline UsbCameraDeviceManager::CUsbCameraDeviceManager::CUsbCameraDeviceManager()
 {
 	m_serialNumber = "";
 	m_productID = "";
@@ -183,13 +183,13 @@ UsbCameraDeviceManager::CUsbCameraDeviceManager::CUsbCameraDeviceManager()
 	m_unknownDeviceParentInstance = "";
 }
 
-UsbCameraDeviceManager::CUsbCameraDeviceManager::~CUsbCameraDeviceManager()
+inline UsbCameraDeviceManager::CUsbCameraDeviceManager::~CUsbCameraDeviceManager()
 {
 	// nothing
 }
 
 // List all USB devices on system
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::ListAllUsbDevices(std::vector<std::string> &deviceInstanceIDs, std::vector<std::string> &deviceDescriptions)
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::ListAllUsbDevices(std::vector<std::string> &deviceInstanceIDs, std::vector<std::string> &deviceDescriptions)
 {
 	HDEVINFO hDevInfo;
 	SP_DEVINFO_DATA DeviceInfoData;
@@ -225,7 +225,7 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::ListAllUsbDevices(std::vec
 }
 
 // Search the USB devices for the first device which has a keyword in it's description
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::FindDeviceInstanceID(std::string &keyWordInDescription, std::string &foundDeviceInstanceID, std::string &foundDeviceDescription)
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::FindDeviceInstanceID(std::string &keyWordInDescription, std::string &foundDeviceInstanceID, std::string &foundDeviceDescription)
 {
 	HDEVINFO hDevInfo;
 	SP_DEVINFO_DATA DeviceInfoData;
@@ -264,7 +264,7 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::FindDeviceInstanceID(std::
 }
 		
 // Get the device's description from it's instance ID.
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::GetDeviceDescription(std::string &deviceInstanceID, std::string &deviceDescription)
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::GetDeviceDescription(std::string &deviceInstanceID, std::string &deviceDescription)
 {
 	char szDeviceDescription[1024] = { 0 };
 	HDEVINFO hDevInfo;
@@ -288,7 +288,7 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::GetDeviceDescription(std::
 }
 
 // Get the device's Parent device instance ID from the device's instance id
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::GetParentDeviceInstanceID(std::string &deviceInstanceID, std::string &parentDeviceInstanceID)
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::GetParentDeviceInstanceID(std::string &deviceInstanceID, std::string &parentDeviceInstanceID)
 {
 	CONFIGRET status;
 	HDEVINFO hDevInfo;
@@ -322,7 +322,7 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::GetParentDeviceInstanceID(
 }
 
 // Reads the camera's Full Name and constructs the needed ID tags for finding it in the system.
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::InitializeFromCamera(std::string serialNumber)
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::InitializeFromCamera(std::string serialNumber)
 {
 	try
 	{
@@ -426,7 +426,7 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::InitializeFromCamera(std::
 }
 
 // Enables the device like in Windows Device Manager
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::EnableDevice(std::string deviceInstanceID, std::string &errorMessage)
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::EnableDevice(std::string deviceInstanceID, std::string &errorMessage)
 {
 
 	try
@@ -500,7 +500,7 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::EnableDevice(std::string d
 }
 
 // Enables the camera like in Windows Device Manager
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::EnableCamera()
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::EnableCamera()
 {
 	try
 	{
@@ -608,7 +608,7 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::EnableCamera()
 }
 
 // Disables the device like in Windows Device Manager
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::DisableDevice(std::string deviceInstanceID, std::string &errorMessage)
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::DisableDevice(std::string deviceInstanceID, std::string &errorMessage)
 {
 	try
 	{
@@ -680,7 +680,7 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::DisableDevice(std::string 
 }
 
 // Disables the camera like in Windows Device Manager
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::DisableCamera()
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::DisableCamera()
 {
 	try
 	{
@@ -750,7 +750,7 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::DisableCamera()
 }
 
 // Enables the camera device's parent USB Composite Device like in Windows Device Manager
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::EnableCameraCompositeDevice()
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::EnableCameraCompositeDevice()
 {
 	try
 	{
@@ -825,7 +825,7 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::EnableCameraCompositeDevic
 }
 
 // Disables the camera device's parent USB Composite Device like in Windows Device Manager
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::DisableCameraCompositeDevice()
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::DisableCameraCompositeDevice()
 {
 	try
 	{
@@ -906,7 +906,7 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::DisableCameraCompositeDevi
 }
 
 // This will check the status of the "allow computer to turn off this device..." field in device manager
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::ReadDeviceTreePowerStates()
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::ReadDeviceTreePowerStates()
 {
 #define ARRAY_SIZE(arr)     (sizeof(arr)/sizeof(arr[0]))
 
@@ -1002,7 +1002,7 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::ReadDeviceTreePowerStates(
 
 // TODO
 // split and make static.
-bool UsbCameraDeviceManager::CUsbCameraDeviceManager::ReadPowerSchemeSettings()
+inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::ReadPowerSchemeSettings()
 {
 	/*
 	output of c:\powercfg /q
@@ -1204,51 +1204,51 @@ bool UsbCameraDeviceManager::CUsbCameraDeviceManager::ReadPowerSchemeSettings()
 
 // TODO
 // split and make static
-int UsbCameraDeviceManager::CUsbCameraDeviceManager::IsEnabledFastBoot()
+inline int UsbCameraDeviceManager::CUsbCameraDeviceManager::IsEnabledFastBoot()
 {
 	return m_hiberBootEnabled;
 }
 
-int UsbCameraDeviceManager::CUsbCameraDeviceManager::IsSelectiveSuspendEnabledOnBattery()
+inline int UsbCameraDeviceManager::CUsbCameraDeviceManager::IsSelectiveSuspendEnabledOnBattery()
 {
 	return m_UsbSelectiveSuspendIsEnabledDC;
 }
 
-int UsbCameraDeviceManager::CUsbCameraDeviceManager::IsSelectiveSuspendEnabledWhenPluggedIn()
+inline int UsbCameraDeviceManager::CUsbCameraDeviceManager::IsSelectiveSuspendEnabledWhenPluggedIn()
 {
 	return m_UsbSelectiveSuspendIsEnabledAC;
 }
 
-int UsbCameraDeviceManager::CUsbCameraDeviceManager::IsUsb3LinkPowerManagementEnabledOnBattery()
+inline int UsbCameraDeviceManager::CUsbCameraDeviceManager::IsUsb3LinkPowerManagementEnabledOnBattery()
 {
 	return m_Usb3LinkPowerManagmentIsEnabledDC;
 }
 
-int UsbCameraDeviceManager::CUsbCameraDeviceManager::IsUsb3LinkPowerManagementEnabledWhenPluggedIn()
+inline int UsbCameraDeviceManager::CUsbCameraDeviceManager::IsUsb3LinkPowerManagementEnabledWhenPluggedIn()
 {
 	return m_Usb3LinkPowerManagmentIsEnabledAC;
 }
 
 // get the device names in the camera's tree
-std::vector<std::string> UsbCameraDeviceManager::CUsbCameraDeviceManager::GetCameraTreeDeviceNames()
+inline std::vector<std::string> UsbCameraDeviceManager::CUsbCameraDeviceManager::GetCameraTreeDeviceNames()
 {
 	return m_deviceNames;
 }
 
 // get the power states of the device names in the tree
-std::vector<std::string> UsbCameraDeviceManager::CUsbCameraDeviceManager::GetCameraTreeDevicePowerStates()
+inline std::vector<std::string> UsbCameraDeviceManager::CUsbCameraDeviceManager::GetCameraTreeDevicePowerStates()
 {
 	return m_devicePowerStates;
 }
 
 // get the name of the active power scheme
-std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetActivePowerSchemeName()
+inline std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetActivePowerSchemeName()
 {
 	return m_activePowerSchemeName;
 }
 
 // For reference, the user can see if the camera is currently connected as USB2 or USB3.
-std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetUsbConnectionType()
+inline std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetUsbConnectionType()
 {
 	try
 	{
@@ -1302,25 +1302,25 @@ std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetUsbConnectionTyp
 }
 
 // For reference, the user can see the camera device instance string
-std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetDeviceInstanceID()
+inline std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetDeviceInstanceID()
 {
 	return m_deviceInstance;
 }
 
 // For reference, the user can see the camera device's parent USB Composite Device instance string
-std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetCompositeDeviceInstanceID()
+inline std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetCompositeDeviceInstanceID()
 {
 	return m_compositeDeviceInstance;
 }
 
 // For reference, the user can see the camera device's product ID tag.
-std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetProductID()
+inline std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetProductID()
 {
 	return m_productID;
 }
 
 // For reference, the user can see the last error message.
-std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetLastErrorMessage()
+inline std::string UsbCameraDeviceManager::CUsbCameraDeviceManager::GetLastErrorMessage()
 {
 	return m_errorMessage;
 }

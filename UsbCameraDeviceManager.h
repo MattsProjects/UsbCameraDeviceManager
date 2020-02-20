@@ -965,9 +965,9 @@ inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::ReadDeviceTreePower
 						if (returnCode == ERROR_SUCCESS)
 						{
 							DWORD nValue = MAXDWORD;
-							DWORD dwBufferSize(sizeof(DWORD));
+							DWORD bufSize(sizeof(DWORD));
 							DWORD nResult(0);
-							returnCode = RegQueryValueExA(hSubkey, "IdleInWorkingState", 0, NULL, reinterpret_cast<LPBYTE>(&nResult), &dwBufferSize);
+							returnCode = RegQueryValueExA(hSubkey, "IdleInWorkingState", 0, NULL, reinterpret_cast<LPBYTE>(&nResult), &bufSize);
 							if (returnCode == ERROR_SUCCESS)
 							{
 								nValue = nResult;
@@ -1065,8 +1065,8 @@ inline bool UsbCameraDeviceManager::CUsbCameraDeviceManager::ReadPowerSchemeSett
 			ZeroMemory(&nameBuffer, sizeof(nameBuffer));
 			nameBufferSize = sizeof(nameBuffer);
 			PowerReadFriendlyName(NULL, pGuidActivePwrSchm, &NO_SUBGROUP_GUID, NULL, nameBuffer, &nameBufferSize);
-			char * destString = new char[nameBufferSize];
-			WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)nameBuffer, -1, destString, 32, 0, 0);
+			char destString[2048];
+			WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)nameBuffer, -1, (LPSTR)destString, 32, 0, 0);
 			if (destString != NULL)
 				m_activePowerSchemeName = destString;
 		
